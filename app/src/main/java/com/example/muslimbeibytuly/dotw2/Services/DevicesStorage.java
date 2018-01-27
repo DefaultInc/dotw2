@@ -9,11 +9,11 @@ import java.util.Collection;
  * Created by muslimbeibytuly on 1/27/18.
  */
 
-public class DevicesService {
-    private static DevicesService instance = null;
-    public static DevicesService getInstance() {
+public class DevicesStorage {
+    private static DevicesStorage instance = null;
+    public static DevicesStorage getInstance() {
         if (instance == null) {
-            instance = new DevicesService();
+            instance = new DevicesStorage();
         }
         return instance;
     }

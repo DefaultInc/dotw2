@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.example.muslimbeibytuly.dotw2.Services.DevicesService;
+import com.example.muslimbeibytuly.dotw2.Services.DevicesStorage;
 import com.example.muslimbeibytuly.dotw2.Services.ServerAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
         intentFilter = new IntentFilter();
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
         new ServerAsyncTask().execute();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DevicesStorage.getInstance().getP2pDevicesNames());
+        devicesListView.setAdapter(adapter);
         devicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
-                intent.putExtra("deviceAddress", DevicesService.getInstance().getP2pDevices().get(i).deviceAddress);
+                intent.putExtra("deviceAddress", DevicesStorage.getInstance().getP2pDevices().get(i).deviceAddress);
                 startActivity(intent);
             }
         });
@@ -54,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(receiver);
     }
-    public void refreshList() {
-        devicesListView.invalidate();
+
+    public void refreshDevicesListView() {
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DevicesStorage.getInstance().getP2pDevicesNames());
+        devicesListView.setAdapter(adapter);
     }
 }
 

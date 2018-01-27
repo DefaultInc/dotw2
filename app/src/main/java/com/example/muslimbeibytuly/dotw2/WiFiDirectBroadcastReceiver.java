@@ -3,15 +3,10 @@ package com.example.muslimbeibytuly.dotw2;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
-import android.widget.ArrayAdapter;
-
-import com.example.muslimbeibytuly.dotw2.Services.DevicesService;
-
-import java.util.ArrayList;
+import com.example.muslimbeibytuly.dotw2.Services.DevicesStorage;
 
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
     private WifiP2pManager manager;
@@ -44,8 +39,8 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 manager.requestPeers(channel, new WifiP2pManager.PeerListListener() {
                     @Override
                     public void onPeersAvailable(WifiP2pDeviceList peers) {
-                        DevicesService.getInstance().setP2pDevices(peers.getDeviceList());
-                        activity.refreshList();
+                        DevicesStorage.getInstance().setP2pDevices(peers.getDeviceList());
+                        activity.refreshDevicesListView();
                     }
                 });
             }
