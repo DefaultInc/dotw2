@@ -4,6 +4,7 @@ import android.widget.ListAdapter;
 
 import com.example.muslimbeibytuly.dotw2.MessagingActivity;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +24,18 @@ public class MessagesStorage {
     }
 
     public void addMessage(String message) {
-        messages.get((String) activity.config.deviceAddress).add(message);
+        List<String> l = messages.get((String) activity.config.deviceAddress);
+        if (l == null) l = new ArrayList<String>();
+        l.add(message);
+        messages.put((String) activity.config.deviceAddress, l);
+        activity.runOnUiThread( new Runnable() {
+                @Override
+                public void run() {
+            activity.refreshMessageList();
+                }}
+        );
+        //activity.refreshMessageList();
+
     }
 
     public static MessagesStorage getInstance() {
@@ -34,7 +46,11 @@ public class MessagesStorage {
     }
 
     public List<String> getMessages() {
-        return messages.get((String) activity.config.deviceAddress);
+        if (messages != null && messages.containsKey(activity.config.deviceAddress)) {
+            return messages.get((String) activity.config.deviceAddress);
+        } else {
+            return new ArrayList<String>();
+        }
     }
 }
 

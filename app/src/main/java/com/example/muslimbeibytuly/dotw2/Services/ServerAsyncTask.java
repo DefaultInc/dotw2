@@ -1,5 +1,6 @@
 package com.example.muslimbeibytuly.dotw2.Services;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -35,7 +36,8 @@ public class ServerAsyncTask extends AsyncTask<Void, Void, Void> {
                     result.append(line);
                 }
                 Log.i("received from socket", result.toString());
-                MessagesStorage.getInstance().addMessage(result.toString());
+
+                        MessagesStorage.getInstance().addMessage(result.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -36,5 +36,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="17dp"></ListView>
+        tools:layout_editor_absoluteX="16dp"></ListView>
 </android.support.constraint.ConstraintLayout>

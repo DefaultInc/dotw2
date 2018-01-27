@@ -29,7 +29,6 @@ public class MessagingActivity extends AppCompatActivity {
     Channel channel;
     EditText editText, editTextIP;
     Button button;
-    TextView textView;
     public WifiP2pConfig config;
     ListView messagesListView;
     public static String IP_SERVER = "192.168.49.1";
@@ -42,16 +41,15 @@ public class MessagingActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
 //        editTextIP = findViewById(R.id.editText);
         button = findViewById(R.id.button);
-        textView = findViewById(R.id.textView);
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(this, getMainLooper(), null);
         config = new WifiP2pConfig();
         config.deviceAddress = getIntent().getStringExtra("deviceAddress");
         config.wps.setup = WpsInfo.PBC;
         messagesListView = findViewById(R.id.messagesListView);
+        MessagesStorage.getInstance().activity = this;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MessagesStorage.getInstance().getMessages());
         messagesListView.setAdapter(adapter);
-        MessagesStorage.getInstance().activity = this;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +57,6 @@ public class MessagingActivity extends AppCompatActivity {
             }
         });
     }
-
     @SuppressLint("StaticFieldLeak")
     public class SenderAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -87,5 +84,10 @@ public class MessagingActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    public void refreshMessageList() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MessagesStorage.getInstance().getMessages());
+        messagesListView.setAdapter(adapter);
     }
 }
