@@ -5,4 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.muslimbeibytuly.dotw2.MessagingActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/waiting"
+        android:id="@+id/textView"
+        android:height="100dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/type_here"
+        android:width="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/editText"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        android:text="@string/send"
+        android:id="@+id/button"/>
 </android.support.constraint.ConstraintLayout>
