@@ -54,6 +54,7 @@ public class MessagingActivity extends AppCompatActivity {
             editText.getText();
             try {
                 socket.bind(null);
+
                 socket.connect((new InetSocketAddress(IPAddressHelper.getIPFromMACAddress(config.deviceAddress), 8888)), 500);
                 ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
                 outputStream.writeObject(editText.getText().toString());
