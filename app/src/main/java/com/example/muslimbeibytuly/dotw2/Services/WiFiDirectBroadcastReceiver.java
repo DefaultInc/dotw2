@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+import android.util.Log;
 
 import com.example.muslimbeibytuly.dotw2.MainActivity;
 import com.example.muslimbeibytuly.dotw2.Services.DevicesStorage;
@@ -24,10 +25,12 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
         this.manager.discoverPeers(this.channel, new WifiP2pManager.ActionListener() {
             @Override
             public void onSuccess() {
+                Log.i("DEBUG", "SUCCESSFULL CONNECTED");
             }
 
             @Override
             public void onFailure(int reasonCode) {
+                Log.i("DEBUG", "ERROR CODE");
             }
         });
     }

@@ -35,6 +35,7 @@ public class ServerAsyncTask extends AsyncTask<Void, Void, Void> {
                     result.append(line);
                 }
                 Log.i("received from socket", result.toString());
+                MessagesStorage.getInstance().addMessage(result.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

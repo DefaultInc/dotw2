@@ -3,4 +3,5 @@
     <string name="waiting">waiting</string>
     <string name="type_here">type here</string>
     <string name="send">send</string>
+    <string name="type_ip_here">type ip here</string>
 </resources>

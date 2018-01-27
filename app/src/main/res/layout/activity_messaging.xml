@@ -5,29 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.muslimbeibytuly.dotw2.MessagingActivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/waiting"
-        android:id="@+id/textView"
-        android:height="100dp"
-        />
+
     <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/type_here"
         android:width="100dp"
+        android:inputType="text"
+        android:text="@string/type_here"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/editText"
         app:layout_constraintTop_toTopOf="parent"
-        android:inputType="text"
+        app:layout_constraintVertical_bias="0.905"
         tools:ignore="LabelFor" />
+
     <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        android:layout_height="43dp"
         android:text="@string/send"
-        android:id="@+id/button"/>
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <ListView
+        android:id="@+id/messagesListView"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="17dp"></ListView>
 </android.support.constraint.ConstraintLayout>
