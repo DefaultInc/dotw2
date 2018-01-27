@@ -32,6 +32,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
             }
         });
     }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
@@ -42,7 +43,8 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                     @Override
                     public void onPeersAvailable(WifiP2pDeviceList peers) {
                         ArrayList<String> devices = new ArrayList<>();
-                        for(WifiP2pDevice device : peers.getDeviceList()){
+                        activity.p2pDevices = new ArrayList<>(peers.getDeviceList());
+                        for (WifiP2pDevice device : peers.getDeviceList()) {
                             devices.add(device.deviceName);
                         }
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, devices);
