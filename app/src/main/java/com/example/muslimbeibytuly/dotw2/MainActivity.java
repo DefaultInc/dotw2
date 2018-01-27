@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
                 intent.putExtra("deviceAddress", DevicesStorage.getInstance().getP2pDevices().get(i).deviceAddress);
+                intent.putExtra("deviceName", DevicesStorage.getInstance().getP2pDevices().get(i).deviceName);
                 startActivity(intent);
             }
         });

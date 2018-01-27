@@ -29,15 +29,14 @@ public class ServerAsyncTask extends AsyncTask<Void, Void, Void> {
                 Log.i("socket status", "accepted");
                 InputStream inputStream = client.getInputStream();
                 Log.i("socket status", "got stream");
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
                 StringBuilder result = new StringBuilder();
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     result.append(line);
                 }
                 Log.i("received from socket", result.toString());
-
-                        MessagesStorage.getInstance().addMessage(result.toString());
+                MessagesStorage.getInstance().addMessage(true, result.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();

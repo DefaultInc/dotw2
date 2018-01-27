@@ -32,7 +32,6 @@ public class MessagingActivity extends AppCompatActivity {
     public WifiP2pConfig config;
     ListView messagesListView;
     public static String IP_SERVER = "192.168.49.1";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,7 +47,7 @@ public class MessagingActivity extends AppCompatActivity {
         config.wps.setup = WpsInfo.PBC;
         messagesListView = findViewById(R.id.messagesListView);
         MessagesStorage.getInstance().activity = this;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MessagesStorage.getInstance().getMessages());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, MessagesStorage.getInstance().getMessages());
         messagesListView.setAdapter(adapter);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +70,7 @@ public class MessagingActivity extends AppCompatActivity {
                 ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
                 outputStream.writeObject(editText.getText().toString());
                 outputStream.close();
+                MessagesStorage.getInstance().addMessage(false, editText.getText().toString());
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -87,7 +87,7 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
     public void refreshMessageList() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MessagesStorage.getInstance().getMessages());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, MessagesStorage.getInstance().getMessages());
         messagesListView.setAdapter(adapter);
     }
 }
