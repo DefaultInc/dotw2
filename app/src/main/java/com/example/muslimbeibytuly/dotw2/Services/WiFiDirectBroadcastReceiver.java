@@ -1,4 +1,4 @@
-package com.example.muslimbeibytuly.dotw2;
+package com.example.muslimbeibytuly.dotw2.Services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+
+import com.example.muslimbeibytuly.dotw2.MainActivity;
 import com.example.muslimbeibytuly.dotw2.Services.DevicesStorage;
 
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {

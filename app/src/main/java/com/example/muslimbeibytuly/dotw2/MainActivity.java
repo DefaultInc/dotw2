@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.muslimbeibytuly.dotw2.Services.DevicesStorage;
 import com.example.muslimbeibytuly.dotw2.Services.ServerAsyncTask;
+import com.example.muslimbeibytuly.dotw2.Services.WiFiDirectBroadcastReceiver;
 
 public class MainActivity extends AppCompatActivity {
     WifiP2pManager manager;
@@ -33,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         intentFilter = new IntentFilter();
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
         new ServerAsyncTask().execute();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DevicesStorage.getInstance().getP2pDevicesNames());
-        devicesListView.setAdapter(adapter);
         devicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
