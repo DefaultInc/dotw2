@@ -9,6 +9,8 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.widget.ArrayAdapter;
 
+import com.example.muslimbeibytuly.dotw2.Services.DevicesService;
+
 import java.util.ArrayList;
 
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
@@ -42,13 +44,8 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 manager.requestPeers(channel, new WifiP2pManager.PeerListListener() {
                     @Override
                     public void onPeersAvailable(WifiP2pDeviceList peers) {
-                        ArrayList<String> devices = new ArrayList<>();
-                        activity.p2pDevices = new ArrayList<>(peers.getDeviceList());
-                        for (WifiP2pDevice device : peers.getDeviceList()) {
-                            devices.add(device.deviceName);
-                        }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, devices);
-                        activity.devicesListView.setAdapter(adapter);
+                        DevicesService.getInstance().setP2pDevices(peers.getDeviceList());
+                        activity.refreshList();
                     }
                 });
             }
