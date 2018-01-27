@@ -7,12 +7,27 @@
     tools:context="com.example.muslimbeibytuly.dotw2.MainActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/waiting"
+        android:id="@+id/textView"
+        android:height="100dp"
+        />
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/type_here"
+        android:width="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:id="@+id/textEdit"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textEdit"
+        android:text="@string/send"/>
 </android.support.constraint.ConstraintLayout>
