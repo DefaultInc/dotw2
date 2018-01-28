@@ -35,8 +35,11 @@ public class ServerAsyncTask extends AsyncTask<Void, Void, Void> {
                 while ((line = bufferedReader.readLine()) != null) {
                     result.append(line);
                 }
+                String[] token = result.toString().split("\\$\\$");
                 Log.i("received from socket", result.toString());
-                MessagesStorage.getInstance().addMessage(true, result.toString());
+                Log.i("received from socket", token[0] + " " + token[1]);
+
+                MessagesStorage.getInstance().addMessage(token[0], true, token[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();

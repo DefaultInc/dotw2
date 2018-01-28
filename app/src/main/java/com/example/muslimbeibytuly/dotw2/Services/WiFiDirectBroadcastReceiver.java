@@ -45,6 +45,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                     @Override
                     public void onPeersAvailable(WifiP2pDeviceList peers) {
                         DevicesStorage.getInstance().setP2pDevices(peers.getDeviceList());
+                        MessagesStorage.getInstance().updateUsers();
                         activity.refreshDevicesListView();
                     }
                 });

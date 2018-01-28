@@ -1,6 +1,7 @@
 package com.example.muslimbeibytuly.dotw2.Services;
 
 import android.net.wifi.p2p.WifiP2pDevice;
+import android.util.Log;
 
 import com.example.muslimbeibytuly.dotw2.MessagingActivity;
 
@@ -23,7 +24,7 @@ public class MessagesStorage {
         }
     }
 
-    public void addMessage(boolean who, String message) {
+    public void addMessage(String user, boolean who, String message) {
         List<String> l;
         l = messages.get(activity.config.deviceAddress);
         if (who) {
@@ -36,14 +37,19 @@ public class MessagesStorage {
         }
         messages.put(activity.config.deviceAddress, l);
         activity.runOnUiThread(new Runnable() {
-                                   @Override
-                                   public void run() {
-                                       activity.refreshMessageList();
-                                   }
-                               }
-        );
-        //activity.refreshMessageList();
+            @Override
+            public void run() {
+                activity.refreshMessageList();
+            }
+        });
 
+    }
+
+    public void updateUsers() {
+        users = new HashMap<>();
+        for (WifiP2pDevice device : DevicesStorage.getInstance().getP2pDevices()) {
+            users.put(device.deviceAddress, device.deviceName);
+        }
     }
 
     public static MessagesStorage getInstance() {
@@ -54,6 +60,7 @@ public class MessagesStorage {
     }
 
     public List<String> getMessages() {
+        Log.i("GET MESSAGES", activity.config.deviceAddress);
         if (messages != null && messages.containsKey(activity.config.deviceAddress)) {
             return messages.get(activity.config.deviceAddress);
         } else {

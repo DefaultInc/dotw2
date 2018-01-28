@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:width="100dp"
         android:inputType="text"
-        android:text="@string/type_here"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,5 +36,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"></ListView>
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_alignParentBottom="true"
+        ></ListView>
 </android.support.constraint.ConstraintLayout>
